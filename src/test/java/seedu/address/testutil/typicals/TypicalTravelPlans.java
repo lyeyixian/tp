@@ -1,5 +1,11 @@
 package seedu.address.testutil.typicals;
 
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_END_DATE_EUROPE;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_END_DATE_NYC;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_EUROPE;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_NYC;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_START_DATE_EUROPE;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_START_DATE_NYC;
 import static seedu.address.testutil.typicals.TypicalAccommodations.getTypicalAccommodationList;
 import static seedu.address.testutil.typicals.TypicalActivities.getTypicalActivities1;
 import static seedu.address.testutil.typicals.TypicalActivities.getTypicalActivityList;
@@ -26,6 +32,13 @@ public class TypicalTravelPlans {
             .withAccommodationList(getTypicalAccommodationList(2))
             .withActivityList(getTypicalActivityList(2))
             .withFriendList(getTypicalFriendList(2)).build();
+
+    // Manually added - TravelPlans' details found in {@code CommandTestUtil}
+    public static final TravelPlan EUROPE = new TravelPlanBuilder().withName(VALID_NAME_EUROPE)
+            .withStartDate(VALID_START_DATE_EUROPE).withEndDate(VALID_END_DATE_EUROPE).build();
+
+    public static final TravelPlan NYC = new TravelPlanBuilder().withName(VALID_NAME_NYC)
+            .withStartDate(VALID_START_DATE_NYC).withEndDate(VALID_END_DATE_NYC).build();
 
     private TypicalTravelPlans() {} // prevents instantiation
 

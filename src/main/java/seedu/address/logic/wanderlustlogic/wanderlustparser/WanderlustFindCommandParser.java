@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.wanderlustlogic.wanderlustcommands.FindCommand;
 import seedu.address.logic.wanderlustlogic.wanderlustparser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.commons.NameContainsKeywordsPredicate;
 
 
 /**

@@ -18,6 +18,7 @@ import seedu.address.model.friend.Friend;
 import seedu.address.model.travelplan.TravelPlan;
 import seedu.address.model.travelplanner.Directory;
 import seedu.address.model.travelplanner.Model;
+import seedu.address.model.travelplanner.ObservableDirectory;
 import seedu.address.model.travelplanner.ReadOnlyTravelPlanner;
 import seedu.address.storage.travelplanner.Storage;
 
@@ -91,6 +92,10 @@ public class LogicManager implements Logic {
     @Override
     public Directory getDirectory() {
         return model.getDirectory();
+    }
+
+    public ObservableDirectory getObservableDirectory() {
+        return model.getObservableDirectory();
     }
 
     @Override

@@ -181,13 +181,15 @@ public interface Model {
     void updateFilteredFriendList(Predicate<Friend> predicate);
 
     /**
-     * Replaces the directory with {@code dir}.
-     * {@code dir} must exist in the travel planner.
+     * Replaces the directory with the directory at {@code index}.
+     * {@code index} must exist in the travel planner.
      */
-    void setDirectory(Directory dir);
+    void setDirectory(int index);
 
     /**
      * Returns the current directory that the wanderlust is currently in.
      */
     Directory getDirectory();
+
+    ObservableDirectory getObservableDirectory();
 }

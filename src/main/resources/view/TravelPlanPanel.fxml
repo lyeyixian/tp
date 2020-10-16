@@ -19,9 +19,5 @@
         <padding>
             <Insets top="20"/>
         </padding>
-        <Label fx:id="accommodations" styleClass="cell_medium_label, block_label" text="Accommodations"/>
-        <Label fx:id="friends" styleClass="cell_medium_label, block_label" text="Travel Friends"/>
-        <Label fx:id="activities" styleClass="cell_medium_label, block_label" text="Activities"/>
-        <Label fx:id="schedule" styleClass="cell_medium_label, block_label" text="Schedule"/>
     </VBox>
 </VBox>

@@ -11,6 +11,7 @@ import seedu.address.logic.wanderlustlogic.wanderlustcommands.ClearCommand;
 import seedu.address.logic.wanderlustlogic.wanderlustcommands.Command;
 import seedu.address.logic.wanderlustlogic.wanderlustcommands.ExitCommand;
 import seedu.address.logic.wanderlustlogic.wanderlustcommands.FindCommand;
+import seedu.address.logic.wanderlustlogic.wanderlustcommands.GoToCommand;
 import seedu.address.logic.wanderlustlogic.wanderlustcommands.HelpCommand;
 import seedu.address.logic.wanderlustlogic.wanderlustcommands.ListCommand;
 import seedu.address.logic.wanderlustlogic.wanderlustcommands.delete.DeleteCommand;
@@ -45,7 +46,7 @@ public class WanderlustParser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-        //    return new WanderlustAddCommandParser().parse(arguments);
+            return new WanderlustAddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new WanderlustEditCommandParser().parse(arguments);
@@ -67,6 +68,9 @@ public class WanderlustParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case GoToCommand.COMMAND_WORD:
+            return new WanderlustGoToCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

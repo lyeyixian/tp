@@ -42,7 +42,7 @@ public class Importance {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Importance // instanceof handles nulls
-                && value == (((Importance) other).value)); // state check
+                && value.equals(((Importance) other).value)); // state check
     }
 
     @Override

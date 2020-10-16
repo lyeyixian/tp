@@ -45,7 +45,7 @@ public class FriendListTest {
     @Test
     public void resetData_withDuplicateFriends_throwsDuplicateFriendException() {
         // Two friends with the same identity fields
-        Friend editedAlice = new FriendBuilder(ALICE).withPhone(VALID_PHONE_B).build();
+        Friend editedAlice = new FriendBuilder(ALICE).withMobile(VALID_PHONE_B).build();
         List<Friend> newFriends = Arrays.asList(ALICE, editedAlice);
         FriendListStub newData = new FriendListStub(newFriends);
 
@@ -71,7 +71,7 @@ public class FriendListTest {
     @Test
     public void hasFriend_friendWithSameIdentityFieldsInFriendList_returnsTrue() {
         friendList.addFriend(ALICE);
-        Friend editedAlice = new FriendBuilder(ALICE).withPhone(VALID_PHONE_B).build();
+        Friend editedAlice = new FriendBuilder(ALICE).withMobile(VALID_PHONE_B).build();
         assertTrue(friendList.hasFriend(editedAlice));
     }
 

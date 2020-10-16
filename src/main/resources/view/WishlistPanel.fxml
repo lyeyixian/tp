@@ -9,10 +9,4 @@
         <Insets top="5" right="5" bottom="5" left="15" />
     </padding>
     <Label fx:id="name" styleClass="cell_big_label" text="Wishlist" />
-    <VBox fx:id="travelObjectLists">
-        <padding>
-            <Insets top="20"/>
-        </padding>
-        <Label fx:id="activities" styleClass="cell_medium_label, block_label" text="Activities"/>
-    </VBox>
 </VBox>

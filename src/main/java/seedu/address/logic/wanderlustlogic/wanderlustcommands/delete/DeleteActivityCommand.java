@@ -15,10 +15,9 @@ import seedu.address.model.travelplanner.Model;
 public class DeleteActivityCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "activity";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the activity identified by the index number used in the displayed travel plan list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE =
+            "delete: Deletes the activity identified by the index number used in the displayed travel plan list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n";
 
     public static final String MESSAGE_DELETE_ACTIVITY_SUCCESS = "Deleted Activity: %1$s";
 

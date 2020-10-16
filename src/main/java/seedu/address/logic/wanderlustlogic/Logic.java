@@ -12,6 +12,7 @@ import seedu.address.model.activity.Activity;
 import seedu.address.model.friend.Friend;
 import seedu.address.model.travelplan.TravelPlan;
 import seedu.address.model.travelplanner.Directory;
+import seedu.address.model.travelplanner.ObservableDirectory;
 import seedu.address.model.travelplanner.ReadOnlyTravelPlanner;
 
 /**
@@ -53,6 +54,8 @@ public interface Logic {
      * Returns the current directory.
      */
     Directory getDirectory();
+
+    ObservableDirectory getObservableDirectory();
 
     /**
      * Returns the user prefs' address book file path.

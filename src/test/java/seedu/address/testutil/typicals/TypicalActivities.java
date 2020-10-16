@@ -1,5 +1,16 @@
 package seedu.address.testutil.typicals;
 
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_ACTIVITYDATETIME_SKI;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_ACTIVITYDATETIME_ZOO;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_COST_SKI;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_COST_ZOO;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_LEVELOFIMPORTANCE_SKI;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_LEVELOFIMPORTANCE_ZOO;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_LOCATION_SKI;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_LOCATION_ZOO;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_SKI;
+import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_ZOO;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,18 +39,18 @@ public class TypicalActivities {
             .withLocation("Dunkin Donut Palace")
             .withDateTime("2020-11-11 11:00").build();
 
-    public static final Activity ZOO = new ActivityBuilder().withName("Singapore Mandai Zoo")
-            .withCost("100").withLevelOfImportance("3")
-            .withLocation("124 Mandai Road")
-            .withDateTime("2020-10-10 12:00").build();
+    public static final Activity ZOO = new ActivityBuilder().withName(VALID_NAME_ZOO)
+            .withCost(VALID_COST_ZOO).withLevelOfImportance(VALID_LEVELOFIMPORTANCE_ZOO)
+            .withLocation(VALID_LOCATION_ZOO)
+            .withDateTime(VALID_ACTIVITYDATETIME_ZOO).build();
     public static final Activity THEMEPARK = new ActivityBuilder().withName("Universal Studios Singapore")
             .withCost("80").withLevelOfImportance("5")
             .withLocation("8 Sentosa Gateway")
             .withDateTime("2020-10-11 12:00").build();
-    public static final Activity SKIING = new ActivityBuilder().withName("Gore Mountain Skiing Resort")
-            .withCost("300").withLevelOfImportance("4")
-            .withLocation("793 Peaceful Valley Rd")
-            .withDateTime("2020-12-12 12:00").build();
+    public static final Activity SKI = new ActivityBuilder().withName(VALID_NAME_SKI)
+            .withCost(VALID_COST_SKI).withLevelOfImportance(VALID_LEVELOFIMPORTANCE_SKI)
+            .withLocation(VALID_LOCATION_SKI)
+            .withDateTime(VALID_ACTIVITYDATETIME_SKI).build();
     public static final Activity HIKING = new ActivityBuilder().withName("Treetop Walk")
             .withCost("0").withLevelOfImportance("2")
             .withLocation("601 Island Club Rd")
@@ -81,6 +92,6 @@ public class TypicalActivities {
     }
 
     public static List<Activity> getTypicalActivities2() {
-        return new ArrayList<>(Arrays.asList(ZOO, THEMEPARK, SKIING, HIKING));
+        return new ArrayList<>(Arrays.asList(ZOO, THEMEPARK, SKI, HIKING));
     }
 }
