@@ -1,11 +1,11 @@
 package seedu.address.testutil.typicals;
 
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_END_DATE_EUROPE;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_END_DATE_NYC;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_EUROPE;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_NYC;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_START_DATE_EUROPE;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_START_DATE_NYC;
+import static seedu.address.logic.command.CommandTestUtil.VALID_END_DATE_EUROPE;
+import static seedu.address.logic.command.CommandTestUtil.VALID_END_DATE_NYC;
+import static seedu.address.logic.command.CommandTestUtil.VALID_NAME_EUROPE;
+import static seedu.address.logic.command.CommandTestUtil.VALID_NAME_NYC;
+import static seedu.address.logic.command.CommandTestUtil.VALID_START_DATE_EUROPE;
+import static seedu.address.logic.command.CommandTestUtil.VALID_START_DATE_NYC;
 import static seedu.address.testutil.typicals.TypicalAccommodations.getTypicalAccommodationList;
 import static seedu.address.testutil.typicals.TypicalActivities.getTypicalActivities1;
 import static seedu.address.testutil.typicals.TypicalActivities.getTypicalActivityList;
@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.TravelPlanner;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.travelplan.TravelPlan;
-import seedu.address.model.travelplanner.TravelPlanner;
 import seedu.address.testutil.builders.ActivityBuilder;
 import seedu.address.testutil.builders.TravelPlanBuilder;
 

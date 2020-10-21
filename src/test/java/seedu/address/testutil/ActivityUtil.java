@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.wanderlustlogic.wanderlustparser.CliSyntax.PREFIX_COST;
-import static seedu.address.logic.wanderlustlogic.wanderlustparser.CliSyntax.PREFIX_DATETIME;
-import static seedu.address.logic.wanderlustlogic.wanderlustparser.CliSyntax.PREFIX_IMPORTANCE;
-import static seedu.address.logic.wanderlustlogic.wanderlustparser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.wanderlustlogic.wanderlustparser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORTANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-import seedu.address.logic.wanderlustlogic.wanderlustcommands.add.AddCommand;
-import seedu.address.logic.wanderlustlogic.wanderlustcommands.edit.EditDescriptor;
+import seedu.address.logic.command.add.AddCommand;
+import seedu.address.logic.command.edit.EditDescriptor;
 import seedu.address.model.activity.Activity;
 
 public class ActivityUtil {

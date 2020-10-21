@@ -12,12 +12,12 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.wanderlustlogic.Logic;
-import seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandResult;
-import seedu.address.logic.wanderlustlogic.wanderlustcommands.exceptions.CommandException;
-import seedu.address.logic.wanderlustlogic.wanderlustparser.exceptions.ParseException;
-import seedu.address.model.travelplanner.Directory;
-import seedu.address.model.travelplanner.ObservableDirectory;
+import seedu.address.logic.Logic;
+import seedu.address.logic.command.CommandResult;
+import seedu.address.logic.command.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Directory;
+import seedu.address.model.ObservableDirectory;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -190,7 +190,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.address.logic.Logic#execute(String)
+     * @see Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {

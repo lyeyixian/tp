@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.wanderlustlogic.wanderlustcommands.edit.EditDescriptor;
+import seedu.address.logic.command.edit.EditDescriptor;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.activity.Importance;
 import seedu.address.model.activity.WanderlustDateTime;

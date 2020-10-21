@@ -6,8 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.Directory;
 import seedu.address.model.travelplan.TravelPlan;
-import seedu.address.model.travelplanner.Directory;
 
 
 /**

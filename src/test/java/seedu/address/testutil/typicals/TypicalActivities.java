@@ -1,15 +1,15 @@
 package seedu.address.testutil.typicals;
 
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_ACTIVITYDATETIME_SKI;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_ACTIVITYDATETIME_ZOO;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_COST_SKI;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_COST_ZOO;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_LEVELOFIMPORTANCE_SKI;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_LEVELOFIMPORTANCE_ZOO;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_LOCATION_SKI;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_LOCATION_ZOO;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_SKI;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_ZOO;
+import static seedu.address.logic.command.CommandTestUtil.VALID_ACTIVITYDATETIME_SKI;
+import static seedu.address.logic.command.CommandTestUtil.VALID_ACTIVITYDATETIME_ZOO;
+import static seedu.address.logic.command.CommandTestUtil.VALID_COST_SKI;
+import static seedu.address.logic.command.CommandTestUtil.VALID_COST_ZOO;
+import static seedu.address.logic.command.CommandTestUtil.VALID_LEVELOFIMPORTANCE_SKI;
+import static seedu.address.logic.command.CommandTestUtil.VALID_LEVELOFIMPORTANCE_ZOO;
+import static seedu.address.logic.command.CommandTestUtil.VALID_LOCATION_SKI;
+import static seedu.address.logic.command.CommandTestUtil.VALID_LOCATION_ZOO;
+import static seedu.address.logic.command.CommandTestUtil.VALID_NAME_SKI;
+import static seedu.address.logic.command.CommandTestUtil.VALID_NAME_ZOO;
 
 import java.util.ArrayList;
 import java.util.Arrays;

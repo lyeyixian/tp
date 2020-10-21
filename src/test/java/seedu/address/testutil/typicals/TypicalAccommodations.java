@@ -1,15 +1,15 @@
 package seedu.address.testutil.typicals;
 
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_COST_HOME;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_COST_INN;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_END_DATE_HOME;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_END_DATE_INN;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_LOCATION_HOME;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_LOCATION_INN;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_HOME;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_INN;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_START_DATE_HOME;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_START_DATE_INN;
+import static seedu.address.logic.command.CommandTestUtil.VALID_COST_HOME;
+import static seedu.address.logic.command.CommandTestUtil.VALID_COST_INN;
+import static seedu.address.logic.command.CommandTestUtil.VALID_END_DATE_HOME;
+import static seedu.address.logic.command.CommandTestUtil.VALID_END_DATE_INN;
+import static seedu.address.logic.command.CommandTestUtil.VALID_LOCATION_HOME;
+import static seedu.address.logic.command.CommandTestUtil.VALID_LOCATION_INN;
+import static seedu.address.logic.command.CommandTestUtil.VALID_NAME_HOME;
+import static seedu.address.logic.command.CommandTestUtil.VALID_NAME_INN;
+import static seedu.address.logic.command.CommandTestUtil.VALID_START_DATE_HOME;
+import static seedu.address.logic.command.CommandTestUtil.VALID_START_DATE_INN;
 
 import java.util.ArrayList;
 import java.util.Arrays;

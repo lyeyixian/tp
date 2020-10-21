@@ -4,18 +4,23 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.command.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.accommodation.Accommodation;
+import seedu.address.model.activity.Activity;
+import seedu.address.model.commons.NameContainsKeywordsPredicate;
+import seedu.address.model.friend.Friend;
+
 
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FindCommandParser implements Parser<FindCommand> {
+public class FindCommandParser implements ParserInterface<FindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
@@ -25,9 +30,33 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        try {
+            String[] keywords = args.split(" ", 3);
+            String travelPlanObjectType = keywords[1].substring(1);
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            String findWord = keywords[2];
+            String[] nameKeywords = findWord.split("\\s+");
+
+
+            switch (travelPlanObjectType) {
+            case Friend.TPO_WORD:
+                return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)), 2);
+
+            case Activity.TPO_WORD:
+                return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)), 0);
+
+            case Accommodation.TPO_WORD:
+                return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)), 1);
+
+            default:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+            }
+        } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MISSING_KEYWORDS));
+        }
+
     }
-
 }
+

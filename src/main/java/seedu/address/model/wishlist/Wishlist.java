@@ -5,10 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.Directory;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.activity.UniqueActivityList;
 import seedu.address.model.commons.ReadOnlyActivityList;
-import seedu.address.model.travelplanner.Directory;
 
 /**
  * Wraps all data at the travel plan level

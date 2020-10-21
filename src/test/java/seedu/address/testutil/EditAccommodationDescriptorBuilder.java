@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.wanderlustlogic.wanderlustcommands.edit.EditDescriptor;
+import seedu.address.logic.command.edit.EditDescriptor;
 import seedu.address.model.accommodation.Accommodation;
 import seedu.address.model.commons.Cost;
 import seedu.address.model.commons.Location;

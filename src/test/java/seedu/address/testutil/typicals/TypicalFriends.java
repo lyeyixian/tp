@@ -1,11 +1,11 @@
 package seedu.address.testutil.typicals;
 
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_MOBILE_AMY;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_MOBILE_BOB;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_PASSPORT_AMY;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_PASSPORT_BOB;
+import static seedu.address.logic.command.CommandTestUtil.VALID_MOBILE_AMY;
+import static seedu.address.logic.command.CommandTestUtil.VALID_MOBILE_BOB;
+import static seedu.address.logic.command.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.command.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.command.CommandTestUtil.VALID_PASSPORT_AMY;
+import static seedu.address.logic.command.CommandTestUtil.VALID_PASSPORT_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;

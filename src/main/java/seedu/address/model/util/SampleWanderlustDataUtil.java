@@ -1,5 +1,7 @@
 package seedu.address.model.util;
 
+import seedu.address.model.ReadOnlyTravelPlanner;
+import seedu.address.model.TravelPlanner;
 import seedu.address.model.accommodation.Accommodation;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.activity.Importance;
@@ -12,8 +14,6 @@ import seedu.address.model.friend.Friend;
 import seedu.address.model.friend.Mobile;
 import seedu.address.model.friend.Passport;
 import seedu.address.model.travelplan.TravelPlan;
-import seedu.address.model.travelplanner.ReadOnlyTravelPlanner;
-import seedu.address.model.travelplanner.TravelPlanner;
 
 public class SampleWanderlustDataUtil {
     private static TravelPlan sampleTravelPlan1 = new TravelPlan(new Name("Trip to Hawaii"),

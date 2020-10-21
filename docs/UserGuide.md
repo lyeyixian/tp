@@ -199,7 +199,7 @@ Example: `delete -activity 3`
 
 ### 3. Deleting an Accommodation (L)
 
-Deletes an accommodation at a given index from the travel plan in the current directory. 
+Deletes an accommodation at a given index from the travel plan in the current directory.
 This command can only be used within a travel plan. Use `goto NAME_OF_TRAVEL_PLAN` before deleting accommodations.
 
 Format: `delete -accommodation INDEX`
@@ -219,7 +219,7 @@ Example: `delete -friend 1`
 
 ### 1. Editing a TravelPlan (G)
 
-Edits an existing travel plan in the travel planner by its index. 
+Edits an existing travel plan in the travel planner by its index.
 
 Format: `edit -travelplan INDEX n/NAME sd/YYYY-MM-DD ed/YYYY-MM-DD​`
 

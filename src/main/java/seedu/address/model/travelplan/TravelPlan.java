@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.Directory;
 import seedu.address.model.accommodation.Accommodation;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.commons.Name;
@@ -13,7 +14,6 @@ import seedu.address.model.commons.Nameable;
 import seedu.address.model.commons.TravelPlanObject;
 import seedu.address.model.commons.WanderlustDate;
 import seedu.address.model.friend.Friend;
-import seedu.address.model.travelplanner.Directory;
 
 /**
  * Represents a travel plan in the travel planner

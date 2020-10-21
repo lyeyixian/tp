@@ -1,7 +1,7 @@
 package seedu.address.testutil.builders;
 
+import seedu.address.model.TravelPlanner;
 import seedu.address.model.travelplan.TravelPlan;
-import seedu.address.model.travelplanner.TravelPlanner;
 
 /**
  * A utility class to help with building TravelPlanner objects.

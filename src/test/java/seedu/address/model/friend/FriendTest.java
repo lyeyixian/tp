@@ -2,9 +2,9 @@ package seedu.address.model.friend;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_MOBILE_BOB;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.wanderlustlogic.wanderlustcommands.CommandTestUtil.VALID_PASSPORT_BOB;
+import static seedu.address.logic.command.CommandTestUtil.VALID_MOBILE_BOB;
+import static seedu.address.logic.command.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.command.CommandTestUtil.VALID_PASSPORT_BOB;
 
 import org.junit.jupiter.api.Test;
 

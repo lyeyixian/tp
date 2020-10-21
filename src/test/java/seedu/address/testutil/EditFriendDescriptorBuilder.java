@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.wanderlustlogic.wanderlustcommands.edit.EditDescriptor;
+import seedu.address.logic.command.edit.EditDescriptor;
 import seedu.address.model.commons.Name;
 import seedu.address.model.friend.Friend;
 import seedu.address.model.friend.Mobile;
