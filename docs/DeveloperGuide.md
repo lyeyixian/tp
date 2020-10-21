@@ -166,23 +166,27 @@ The following activity diagram summarizes what happens when a user executes the 
 
 #### Implementation
 
+<<<<<<< HEAD
+*Wanderlust*'s Ui supports navigating to different *travel plans* or *wishlist* so that users can view their desired
+=======
 *Wanderlust*'s Ui supports navigating to different *travel plans** or *wishlist* so that users can view their desired
-*travel plan* or *wishlist* easily. Starting up *Wanderlust* will show the default view of a *wishlist* and users 
+>>>>>>> 2a5a5a3bcce887e03175099db9afa04f236e6fc2
+*travel plan* or *wishlist* easily. Starting up *Wanderlust* will show the default view of a *wishlist* and users
 can use the `goto` command to navigate to their desired directory.
 
-`TravelPlannerPanel`, `TravelPlanPanel` and `TravelPlanObjectListPanel` provide the core components for the display of 
-*Wanderlust*. When we are in the directory of *travelplan* or *wishlist*, `MainWindow` renders all 3 of the above 
+`TravelPlannerPanel`, `TravelPlanPanel` and `TravelPlanObjectListPanel` provide the core components for the display of
+*Wanderlust*. When we are in the directory of *travelplan* or *wishlist*, `MainWindow` renders all 3 of the above
 components. `TravelPlannerPanel` highlights the directory we are currently in, `TravelPlanPanel` displays the `name` of the
 directory and if it is a *travelplan*, it will show the `date` of the *travelplan* as well. Lastly, `TravelPlanObjectListPanel`
-displays the respective `activity`, `accommodation` and `friend` list in the UI of a particular directory. Do note that 
+displays the respective `activity`, `accommodation` and `friend` list in the UI of a particular directory. Do note that
 `wishlist` should not contain any `accommodation` or `friend` list. (The UI should not be displaying anything)
 
-Both `TravelPLannerPanel` and `TravelPlanObjectListPanel` make use of JavaFX's `ListView` to display the list of `travelplan`
+Both `TravelPlannerPanel` and `TravelPlanObjectListPanel` make use of JavaFX's `ListView` to display the list of `travelplan`
 or `activity`/`accommodation`/`friend` respectively.
 
 `TravelPlannerPanel` utilizes JavaFX's `Label` to display the `name` of the directory.
 
-`TravelPlanObjectListPanel` utilizes `TabPane` and `Tab` to display the different `activity`/`accommodation`/`friend` tabs 
+`TravelPlanObjectListPanel` utilizes `TabPane` and `Tab` to display the different `activity`/`accommodation`/`friend` tabs
 respectively.
 
 The class diagram below shows the relevant classes involved:
@@ -194,10 +198,10 @@ The class diagram below shows the relevant classes involved:
 `MainWindow` and `CommandResult` facilitates the navigation between directories.
 
 Firstly, `MainWindow#fillInnerParts()` initializes an `OberservableDirectory` which **listens** to any directory changes.
-`MainWindow#executeCommand()` is then called when user enters a `goto` command into the application. `MainWindow#executeCommand()` 
-initializes all changes to what is displayed by the UI by calling `Logic#execute()` which returns a `CommandResult`. 
-From `Logic#execute()`, `MainWindow#handleDirectoryChange()` will navigate the current directory to the one input by the user, changing the 
-UI to view the new directory. From `CommandResult`, the `ResultDisplay` Ui will then output a text specifying which directory 
+`MainWindow#executeCommand()` is then called when user enters a `goto` command into the application. `MainWindow#executeCommand()`
+initializes all changes to what is displayed by the UI by calling `Logic#execute()` which returns a `CommandResult`.
+From `Logic#execute()`, `MainWindow#handleDirectoryChange()` will navigate the current directory to the one input by the user, changing the
+UI to view the new directory. From `CommandResult`, the `ResultDisplay` Ui will then output a text specifying which directory
 has been navigated to.
 
 The activity diagram below illustrates the flow of execution when the UI decides which directory to view:
@@ -216,12 +220,93 @@ Aspect: How navigation between directory works
   - Pros: Main Window will always be listen to any changes in directory, allowing UI to switch fast
   - Cons: More work has to be done to sync up the UI with the model as we have to create an ObservableDirectory class and
   link to the model manager.
-  
+
 - **Alternative 2**: Passing the Directory as a parameter in CommandResult method
   - Pros: Easy to implement since we just have to return a new CommandResult which has an additional parameter of Directory.
   - Cons: Break the abstraction layer as Commands (Logic) should not have to be aware of how the Model is working.
 
 
+### Adding a TravelPlan or TravelPlanObject
+
+#### Implementation
+
+*Wanderlust*'s Ui allows users to add a `TravelPlan` to the `TravelPlanner`, an `Activity` to the `Wishlist` and a `TravelPlanObject`
+to the `TravelPlan` in the current directory.
+
+`MainWindow#executeCommand()` is called when the user enters a `add` command into the application. `MainWindow#executeCommand()`
+adds the TravelPlan/TravelPlanObject by calling `Logic#execute()` which returns a `CommandResult`. `Logic#execute()` also sets the
+the `Directory` of the `ObservableDirectory` to the updated `Directory` after adding the TravelPlan/TravelPlanObject so the Ui displays
+the updated list of `TravelPlan`s/`TravelPlanObject`s. From `CommandResult`, the `ResultDisplay` Ui will then output a text confirming
+to the user that the command was successfully executed.
+
+The activity diagram below shows a scenario whereby a user adds inputs an add command:
+
+![AddActivityDiagram](images/AddActivityDiagram.png)
+
+The sequence diagram below shows a scenario whereby a user adds an `Activity` to the `TravelPlan`/`Wishlist` in the current directory:
+
+![AddActivitySequenceDiagram](images/AddActivitySequenceDiagram.png)
+
+#### Design Consideration:
+
+Aspect: How to add `TravelPlanObject`s to the `TravelPlan` in the current `Directory`
+
+- **Alternative 1 (Current Choice)**: Use individual add commands for each sub-class of `TravelPlanObject`.
+  - Pros: Greater abstraction and a more logical implementation since there is a command for each sub-class.
+  - Cons: Greater repetition of code.
+
+- **Alternative 2**: Using a `AddTravelPlanObjectCommand` class.
+  - Pros: Lesser repetition of code.
+  - Cons: Lesser abstraction.
+
+
+### Copy feature
+
+#### Implementation
+The copy mechanism supports copying an `activity` from `Wishlist` to a specific `TravelPlan`. It is facilitated by the
+add mechanism, except activities can be added to **any** `TravelPlan`  in the `TravelPlanner`, referenced by their index
+*(travel plan index)*. The copy mechanism adds a **deep copy** of the activity in `Wishlist` to the specified `TravelPlan`,
+not the same instance. Thus, if any activity was edited in one directory, it should not affect all other copies.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The copy command can only be called when
+the current directory is the wishlist. Hence, index used to reference activities *(activity index)* refers to that in
+the `filteredWishlist` in `Model`. This means, even if the `find` command is used to filter the activities in the
+wishlist, the indexes in the `filteredWishlist` will be updated accordingly (and so will the Ui). Hence, as long as the
+user uses the index as displayed in the Ui, the correct activity will be referenced.
+</div>
+
+The following sequence diagram shows how the copy operation works:
+
+![CopySequenceDiagram](images/CopySequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `CopyCommandParser` and
+`CopyCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of
+diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The indexes used by CopyCommand in the `execute()` method (after parsing) is zero-based.
+</div>
+
+The following activity diagram summarizes what happens when a user executes the `copy` command:
+
+![CopyActivityDiagram](images/CopyActivityDiagram.png)
+
+#### Design consideration:
+
+Aspect: How to duplicate activity *(deep/shallow copy)*
+- **Alternative 1 (Current Choice)**: Using a deep copy.
+    - Pros: More flexibility to have different variations of the activity in different directories (e.g. different dates/times, etc).
+    - Cons: Each instance is not synced with the rest. Users have to update each copy separately if they wish to do so.
+    *However, there is flexibility to extend other commands (e.g. Edit command) to update all deep copies of the same activity.*
+- **Alternative 2**: Using a shallow copy.
+    - Pros: Only one instance of each activity means users can update all copies of the activity at once.
+    - Cons: Less flexibility to change a copied activity without affecting other copies.
+- **Alternative 3**: Have variations of the copy command to allow both deep/shallow copy.
+    - Pros: Best of both worlds. Allows for flexibility and convenience at the same time.
+    - Cons: Harder to implement. Users need a way to differentiate deep/shallow copies to avoid unintentionally editing
+    a shallow copy. Potentially more edge cases to think about and handle.
 
 ### \[Proposed\] Undo/redo feature
 
