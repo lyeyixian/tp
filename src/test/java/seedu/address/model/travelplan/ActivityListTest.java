@@ -18,7 +18,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.activity.Activity;
 import seedu.address.model.activity.exceptions.DuplicateActivityException;
-import seedu.address.model.commons.ReadOnlyActivityList;
 import seedu.address.testutil.builders.ActivityBuilder;
 
 public class ActivityListTest {
@@ -27,7 +26,7 @@ public class ActivityListTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), activityList.getActivityList());
+        assertEquals(Collections.emptyList(), activityList.getObservableActivityList());
     }
 
     @Test
@@ -70,21 +69,21 @@ public class ActivityListTest {
 
     @Test
     public void getActivityList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> activityList.getActivityList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> activityList.getObservableActivityList().remove(0));
     }
 
     /**
+     * TODO
      * A stub ReadOnlyActivityList whose activities list can violate interface constraints.
      */
-    private static class ActivityListStub implements ReadOnlyActivityList {
+    private static class ActivityListStub extends ActivityList {
         private final ObservableList<Activity> activities = FXCollections.observableArrayList();
 
         ActivityListStub(Collection<Activity> activities) {
             this.activities.setAll(activities);
         }
 
-        @Override
-        public ObservableList<Activity> getActivityList() {
+        public ObservableList<Activity> getObservableActivityList() {
             return activities;
         }
     }

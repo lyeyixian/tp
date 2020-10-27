@@ -76,9 +76,9 @@ public class TravelPlan extends Directory implements Nameable {
      * Resets the existing data of this {@code TravelPlan} with {@code newData}.
      */
     public void resetData(TravelPlan newData) {
-        accommodations.resetData(newData.getAccommodations());
-        activities.resetData(newData.getActivities());
-        friends.resetData(newData.getFriends());
+        accommodations.resetData(newData.getAccommodationList());
+        activities.resetData(newData.getActivityList());
+        friends.resetData(newData.getFriendList());
     }
 
     /**
@@ -94,7 +94,8 @@ public class TravelPlan extends Directory implements Nameable {
      * Returns true if a travel plan object with the same identity as {@code travelPlanObject} exists in the travel plan
      * object's list.
      */
-    public boolean hasTravelPlanObject(TravelPlanObject travelPlanObject) {
+    @Override
+    public boolean has(TravelPlanObject travelPlanObject) {
         if (travelPlanObject instanceof Accommodation) {
             return accommodations.hasAccommodation((Accommodation) travelPlanObject);
         } else if (travelPlanObject instanceof Activity) {
@@ -108,7 +109,8 @@ public class TravelPlan extends Directory implements Nameable {
      * Adds a travel plan object to its corresponding list.
      * The travel plan object must not already exist in its corresponding list.
      */
-    public void addTravelPlanObject(TravelPlanObject travelPlanObject) {
+    @Override
+    public void add(TravelPlanObject travelPlanObject) {
         if (travelPlanObject instanceof Accommodation) {
             accommodations.addAccommodation((Accommodation) travelPlanObject);
         } else if (travelPlanObject instanceof Activity) {
@@ -124,7 +126,8 @@ public class TravelPlan extends Directory implements Nameable {
      * The travel plan object identity of {@code editedTravelPlanObject} must not be the same as another existing
      * travel plan object in the corresponding travel plan object list.
      */
-    public void setTravelPlanObject(TravelPlanObject target, TravelPlanObject editedTravelPlanObject) {
+    @Override
+    public void set(TravelPlanObject target, TravelPlanObject editedTravelPlanObject) {
         if (editedTravelPlanObject instanceof Accommodation) {
             accommodations.setAccommodation((Accommodation) target, (Accommodation) editedTravelPlanObject);
         } else if (editedTravelPlanObject instanceof Activity) {
@@ -138,7 +141,8 @@ public class TravelPlan extends Directory implements Nameable {
      * Removes {@code key} from the corresponding travel plan object list.
      * {@code key} must exist in the corresponding travel plan object list.
      */
-    public void removeTravelPlanObject(TravelPlanObject key) {
+    @Override
+    public void remove(TravelPlanObject key) {
         if (key instanceof Accommodation) {
             accommodations.removeAccommodation((Accommodation) key);
         } else if (key instanceof Activity) {
@@ -146,6 +150,23 @@ public class TravelPlan extends Directory implements Nameable {
         } else { // if key instanceof Friend
             friends.removeFriend((Friend) key);
         }
+    }
+
+    /**
+     * Generates the total cost of the travel plan, considering the cost of activities and accommodations.
+     * @return String Total cost in string.
+     */
+    public String getTotalCost() {
+        int totalCost = 0;
+        for (int i = 0; i < activities.getObservableActivityList().size(); i++) {
+            Activity tempActivity = activities.getObservableActivityList().get(i);
+            totalCost += Integer.parseInt(tempActivity.getCostAsString());
+        }
+        for (int i = 0; i < accommodations.getObservableAccommodationList().size(); i++) {
+            Accommodation tempAccommodation = accommodations.getObservableAccommodationList().get(i);
+            totalCost += Integer.parseInt(tempAccommodation.getCostAsString());
+        }
+        return Integer.toString(totalCost);
     }
 
     //// util methods
@@ -163,6 +184,11 @@ public class TravelPlan extends Directory implements Nameable {
 
     public WanderlustDate getEndDate() {
         return endDate;
+    }
+
+    @Override
+    public boolean isTravelPlan() {
+        return true;
     }
 
     /**
@@ -196,40 +222,28 @@ public class TravelPlan extends Directory implements Nameable {
 
     //// travel plan data methods
 
-    public AccommodationList getAccommodations() {
+    public AccommodationList getAccommodationList() {
         return accommodations;
     }
 
-    public ObservableList<Accommodation> getAccommodationList() {
-        return accommodations.getAccommodationList();
+    public ObservableList<Accommodation> getObservableAccommodationList() {
+        return accommodations.getObservableAccommodationList();
     }
 
-    public ObservableList<TravelPlanObject> getAccommodationTpoList() {
-        return accommodations.getTpoList();
-    }
-
-    public ActivityList getActivities() {
+    public ActivityList getActivityList() {
         return activities;
     }
 
-    public ObservableList<Activity> getActivityList() {
-        return activities.getActivityList();
+    public ObservableList<Activity> getObservableActivityList() {
+        return activities.getObservableActivityList();
     }
 
-    public ObservableList<TravelPlanObject> getActivityTpoList() {
-        return activities.getTpoList();
-    }
-
-    public FriendList getFriends() {
+    public FriendList getFriendList() {
         return friends;
     }
 
-    public ObservableList<Friend> getFriendList() {
-        return friends.getFriendList();
-    }
-
-    public ObservableList<TravelPlanObject> getFriendTpoList() {
-        return friends.getTpoList();
+    public ObservableList<Friend> getObservableFriendList() {
+        return friends.getObservableFriendList();
     }
 
     @Override

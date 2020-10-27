@@ -1,6 +1,7 @@
 package seedu.address.logic.command.add;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -15,7 +16,12 @@ import seedu.address.model.activity.Activity;
 import seedu.address.model.commons.Nameable;
 import seedu.address.model.commons.TravelPlanObject;
 import seedu.address.model.friend.Friend;
+import seedu.address.model.travelplan.AccommodationList;
+import seedu.address.model.travelplan.ActivityList;
+import seedu.address.model.travelplan.FriendList;
 import seedu.address.model.travelplan.TravelPlan;
+import seedu.address.model.travelplan.UniqueTravelPlanList;
+import seedu.address.model.wishlist.Wishlist;
 
 public class ModelStub implements Model {
 
@@ -181,6 +187,51 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableDirectory getObservableDirectory() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public UniqueTravelPlanList getTravelPlanList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Wishlist getWishlist() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ActivityList getActivityList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public AccommodationList getAccommodationList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public FriendList getFriendList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void sortWishlist(Comparator<Activity> comparator) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void sortActivityList(Comparator<Activity> comparator) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void sortAccommodationList(Comparator<Accommodation> comparator) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void sortFriendList(Comparator<Friend> comparator) {
         throw new AssertionError("This method should not be called.");
     }
 

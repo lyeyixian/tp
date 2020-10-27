@@ -21,9 +21,9 @@ public class TravelPlanTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         TravelPlan travelPlan = new TravelPlanBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> travelPlan.getFriendList().remove(0));
-        assertThrows(UnsupportedOperationException.class, () -> travelPlan.getAccommodationList().remove(0));
-        assertThrows(UnsupportedOperationException.class, () -> travelPlan.getActivityList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> travelPlan.getObservableFriendList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> travelPlan.getObservableAccommodationList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> travelPlan.getObservableActivityList().remove(0));
     }
 
     @Test

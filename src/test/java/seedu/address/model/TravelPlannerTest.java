@@ -30,8 +30,8 @@ public class TravelPlannerTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), travelPlanner.getTravelPlanList());
-        assertEquals(Collections.emptyList(), travelPlanner.getWishlist());
+        assertEquals(Collections.emptyList(), travelPlanner.getObservableTravelPlanList());
+        assertEquals(Collections.emptyList(), travelPlanner.getObservableWishlist());
     }
 
     @Test
@@ -108,12 +108,12 @@ public class TravelPlannerTest {
 
     @Test
     public void getTravelPlanList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> travelPlanner.getTravelPlanList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> travelPlanner.getObservableTravelPlanList().remove(0));
     }
 
     @Test
     public void getWishlist_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> travelPlanner.getWishlist().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> travelPlanner.getObservableWishlist().remove(0));
     }
 
     /**
@@ -128,12 +128,12 @@ public class TravelPlannerTest {
         }
 
         @Override
-        public ObservableList<TravelPlan> getTravelPlanList() {
+        public ObservableList<TravelPlan> getObservableTravelPlanList() {
             return travelPlans;
         }
 
         @Override
-        public ObservableList<Activity> getWishlist() {
+        public ObservableList<Activity> getObservableWishlist() {
             return wishlist;
         }
     }

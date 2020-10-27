@@ -2,10 +2,10 @@ package seedu.address.model.travelplan;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.commons.TravelPlanObject;
 import seedu.address.model.friend.Friend;
 import seedu.address.model.friend.UniqueFriendList;
 
@@ -13,9 +13,9 @@ import seedu.address.model.friend.UniqueFriendList;
  * Represents the list of friends in a travel plan
  * Duplicates are not allowed (by .isSameFriend comparison)
  */
-public class FriendList implements ReadOnlyFriendList {
+public class FriendList {
 
-    public static final ObservableList<Friend> EMPTY_FRIEND_LIST = new FriendList().getFriendList();
+    public static final ObservableList<Friend> EMPTY_FRIEND_LIST = new FriendList().getObservableFriendList();
     private final UniqueFriendList friends;
 
     /*
@@ -34,7 +34,7 @@ public class FriendList implements ReadOnlyFriendList {
     /**
      * Creates an seedu.address.model.FriendList using the Friends in the {@code toBeCopied}
      */
-    public FriendList(ReadOnlyFriendList toBeCopied) {
+    public FriendList(FriendList toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -52,10 +52,10 @@ public class FriendList implements ReadOnlyFriendList {
     /**
      * Resets the existing data of this {@code seedu.address.model.FriendList} with {@code newData}.
      */
-    public void resetData(ReadOnlyFriendList newData) {
+    public void resetData(FriendList newData) {
         requireNonNull(newData);
 
-        setFriends(newData.getFriendList());
+        setFriends(newData.getObservableFriendList());
     }
 
     //// friend-level operations
@@ -95,23 +95,22 @@ public class FriendList implements ReadOnlyFriendList {
         friends.remove(key);
     }
 
+    public void sort(Comparator<Friend> comparator) {
+        friends.sort(comparator);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Friends: ");
-        getFriendList().forEach(builder::append);
+        getObservableFriendList().forEach(builder::append);
         return builder.toString();
     }
 
-    @Override
-    public ObservableList<Friend> getFriendList() {
+    public ObservableList<Friend> getObservableFriendList() {
         return friends.asUnmodifiableObservableList();
-    }
-
-    public ObservableList<TravelPlanObject> getTpoList() {
-        return friends.asUnmodifiableObservableTpoList();
     }
 
     @Override

@@ -26,6 +26,11 @@ public class Importance {
         value = importanceLevel;
     }
 
+
+    public String getValue() {
+        return value;
+    }
+
     /**
      * Returns true if a given string is a valid importance level.
      */

@@ -23,6 +23,7 @@ import seedu.address.ui.cards.FriendCard;
 public class TravelPlanObjectListPanel extends UiPart<Region> {
     private static final String FXML = "TravelPlanObjectListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TravelPlanObjectListPanel.class);
+    private final TravelPlanPanel travelPlanPanel;
 
     @FXML
     private ListView<Activity> activityListView;
@@ -45,7 +46,7 @@ public class TravelPlanObjectListPanel extends UiPart<Region> {
      * Creates a {@code TravelPlanObjectListPanel} with the given {@code ObservableList}.
      */
     public TravelPlanObjectListPanel(ObservableList<Activity> activities, ObservableList<Accommodation> accommodations,
-            ObservableList<Friend> friends) {
+            ObservableList<Friend> friends, TravelPlanPanel travelPlanPanel) {
         super(FXML);
         activityListView.setItems(activities);
         activityListView.setCellFactory(listView -> new ActivityListViewCell());
@@ -57,6 +58,7 @@ public class TravelPlanObjectListPanel extends UiPart<Region> {
         this.activityTab = pane.getTabs().get(0);
         this.accommodationTab = pane.getTabs().get(1);
         this.friendTab = pane.getTabs().get(2);
+        this.travelPlanPanel = travelPlanPanel;
     }
 
     /**
@@ -85,6 +87,7 @@ public class TravelPlanObjectListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Activity activity, boolean empty) {
             super.updateItem(activity, empty);
+            travelPlanPanel.update();
 
             if (empty || activity == null) {
                 setGraphic(null);
@@ -103,6 +106,7 @@ public class TravelPlanObjectListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Accommodation accommodation, boolean empty) {
             super.updateItem(accommodation, empty);
+            travelPlanPanel.update();
 
             if (empty || accommodation == null) {
                 setGraphic(null);
@@ -120,6 +124,7 @@ public class TravelPlanObjectListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Friend friend, boolean empty) {
             super.updateItem(friend, empty);
+            travelPlanPanel.update();
 
             if (empty || friend == null) {
                 setGraphic(null);

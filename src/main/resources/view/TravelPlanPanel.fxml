@@ -20,5 +20,7 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" style="-fx-padding: 0 0 0 20;"/>
         <Label fx:id="startDateToEndDate" styleClass="cell_small_label" text="\$startDateToEndDate"
                style="-fx-padding: 5 0 20 20;" />
+        <Label fx:id="totalCost" styleClass="cell_small_label" text="\$totalCost" style="-fx-padding: 5 0 20 20;"/>
+
     </FlowPane>
 </StackPane>

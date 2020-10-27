@@ -29,14 +29,16 @@ public class JsonAdaptedTravelPlanTest {
     private static final String VALID_NAME = AUSTRALIA_TRIP.getName().name;
     private static final String VALID_START_DATE = AUSTRALIA_TRIP.getStartDate().date;
     private static final String VALID_END_DATE = AUSTRALIA_TRIP.getEndDate().date;
-    private static final List<JsonAdaptedActivity> VALID_ACTIVITIES = AUSTRALIA_TRIP.getActivityList().stream()
+    private static final List<JsonAdaptedActivity> VALID_ACTIVITIES = AUSTRALIA_TRIP.getObservableActivityList()
+            .stream()
             .map(JsonAdaptedActivity::new)
             .collect(Collectors.toList());
     private static final String VALID_ACTIVITY_LOCATION = ARCHERY.getLocation().value;
     private static final String VALID_ACTIVITY_COST = ARCHERY.getCost().value;
     private static final String VALID_ACTIVITY_IMPORTANCE = ARCHERY.getLevelOfImportance().value;
     private static final String VALID_ACTIVITY_DATE_TIME = ARCHERY.getActivityDateTime().dateTime;
-    private static final List<JsonAdaptedAccommodation> VALID_ACCOMMODATIONS = AUSTRALIA_TRIP.getAccommodationList()
+    private static final List<JsonAdaptedAccommodation> VALID_ACCOMMODATIONS = AUSTRALIA_TRIP
+            .getObservableAccommodationList()
             .stream()
             .map(JsonAdaptedAccommodation::new)
             .collect(Collectors.toList());
@@ -44,7 +46,7 @@ public class JsonAdaptedTravelPlanTest {
     private static final String VALID_ACCOMMODATION_END_DATE = ALICEHOTEL.getEndDate().date;
     private static final String VALID_ACCOMMODATION_COST = ALICEHOTEL.getCost().value;
     private static final String VALID_ACCOMMODATION_LOCATION = ALICEHOTEL.getLocation().value;
-    private static final List<JsonAdaptedFriend> VALID_FRIENDS = AUSTRALIA_TRIP.getFriendList().stream()
+    private static final List<JsonAdaptedFriend> VALID_FRIENDS = AUSTRALIA_TRIP.getObservableFriendList().stream()
             .map(JsonAdaptedFriend::new)
             .collect(Collectors.toList());
     private static final String VALID_FRIEND_PASSPORT = ALICE.getPassport().value;

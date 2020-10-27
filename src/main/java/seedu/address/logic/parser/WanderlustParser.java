@@ -17,6 +17,7 @@ import seedu.address.logic.command.ShowCommand;
 import seedu.address.logic.command.add.AddCommand;
 import seedu.address.logic.command.delete.DeleteCommand;
 import seedu.address.logic.command.edit.EditCommand;
+import seedu.address.logic.command.sort.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -77,10 +78,13 @@ public class WanderlustParser {
             case ShowCommand.COMMAND_WORD:
                 return new ShowCommandParser().parse(arguments);
 
+            case SortCommand.COMMAND_WORD:
+                return new SortCommandParser().parse(arguments);
+
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
-        } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new ParseException(Command.MESSAGE_MISSING_TYPE);
         }
     }

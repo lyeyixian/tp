@@ -63,13 +63,13 @@ public class JsonAdaptedTravelPlan {
         name = source.getName().name;
         startDate = source.getStartDate().date;
         endDate = source.getEndDate().date;
-        activities.addAll(source.getActivityList().stream()
+        activities.addAll(source.getObservableActivityList().stream()
                 .map(JsonAdaptedActivity::new)
                 .collect(Collectors.toList()));
-        accommodations.addAll(source.getAccommodationList().stream()
+        accommodations.addAll(source.getObservableAccommodationList().stream()
                 .map(JsonAdaptedAccommodation::new)
                 .collect(Collectors.toList()));
-        friends.addAll(source.getFriendList().stream()
+        friends.addAll(source.getObservableFriendList().stream()
                 .map(JsonAdaptedFriend::new)
                 .collect(Collectors.toList()));
     }

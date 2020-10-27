@@ -3,6 +3,7 @@ package seedu.address.model.friend;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -99,6 +100,10 @@ public class UniqueFriendList implements Iterable<Friend> {
         internalList.setAll(friends);
     }
 
+    public void sort(Comparator<Friend> comparator) {
+        FXCollections.sort(internalList, comparator);
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -144,5 +149,9 @@ public class UniqueFriendList implements Iterable<Friend> {
             }
         }
         return true;
+    }
+
+    public ObservableList<Friend> getInternalList() {
+        return internalList;
     }
 }

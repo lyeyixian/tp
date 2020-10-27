@@ -13,12 +13,12 @@ public interface ReadOnlyTravelPlanner {
      * Returns an unmodifiable view of the travel plans list.
      * This list will not contain any duplicate travel plans.
      */
-    ObservableList<TravelPlan> getTravelPlanList();
+    ObservableList<TravelPlan> getObservableTravelPlanList();
 
     /**
      * Returns an unmodifiable view of the wishlist.
      * This list will not contain any duplicate activities.
      */
-    ObservableList<Activity> getWishlist();
+    ObservableList<Activity> getObservableWishlist();
 
 }

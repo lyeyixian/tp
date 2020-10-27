@@ -38,9 +38,9 @@ public class TravelPlanBuilder {
         name = travelPlanToCopy.getName();
         startDate = travelPlanToCopy.getStartDate();
         endDate = travelPlanToCopy.getEndDate();
-        activityList = travelPlanToCopy.getActivities();
-        friendList = travelPlanToCopy.getFriends();
-        accommodationList = travelPlanToCopy.getAccommodations();
+        activityList = travelPlanToCopy.getActivityList();
+        friendList = travelPlanToCopy.getFriendList();
+        accommodationList = travelPlanToCopy.getAccommodationList();
     }
 
     /**

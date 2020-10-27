@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -10,7 +11,12 @@ import seedu.address.model.activity.Activity;
 import seedu.address.model.commons.Nameable;
 import seedu.address.model.commons.TravelPlanObject;
 import seedu.address.model.friend.Friend;
+import seedu.address.model.travelplan.AccommodationList;
+import seedu.address.model.travelplan.ActivityList;
+import seedu.address.model.travelplan.FriendList;
 import seedu.address.model.travelplan.TravelPlan;
+import seedu.address.model.travelplan.UniqueTravelPlanList;
+import seedu.address.model.wishlist.Wishlist;
 
 
 /**
@@ -201,4 +207,38 @@ public interface Model {
     boolean isDirectoryTypeTravelPlan();
 
     ObservableDirectory getObservableDirectory();
+
+    UniqueTravelPlanList getTravelPlanList();
+
+    Wishlist getWishlist();
+
+    ActivityList getActivityList();
+
+    AccommodationList getAccommodationList();
+
+    FriendList getFriendList();
+
+    /**
+     * Sorts the wishlist with the given comparator.
+     * Can be sorted according to cost, importance, date or name.
+     */
+    void sortWishlist(Comparator<Activity> comparator);
+
+    /**
+     * Sorts the activity list with the given comparator.
+     * Can be sorted according to cost, importance, date or name.
+     */
+    void sortActivityList(Comparator<Activity> comparator);
+
+    /**
+     * Sorts the accommodation list with the given comparator.
+     * Can be sorted according to cost, date or name.
+     */
+    void sortAccommodationList(Comparator<Accommodation> comparator);
+
+    /**
+     * Sorts the friend list with the given comparator.
+     * Can be sorted according to name.
+     */
+    void sortFriendList(Comparator<Friend> comparator);
 }

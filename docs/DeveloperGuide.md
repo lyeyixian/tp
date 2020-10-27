@@ -280,6 +280,37 @@ Aspect: How to add `TravelPlanObject`s to the `TravelPlan` in the current `Direc
 - **Alternative 2**: Using a `AddTravelPlanObjectCommand` class.
   - Pros: Lesser repetition of code.
   - Cons: Lesser abstraction.
+  
+### Deleting a TravelPlan or TravelPlanObject
+  
+#### Implementation
+  
+*Wanderlust*'s Ui allows users to delete a `TravelPlan` from the `TravelPlanner`, an `Activity` from the `Wishlist` and a `TravelPlanObject`
+from the `TravelPlan` in the current directory.
+
+`MainWindow#executeCommand()` is called when the user enters a `delete` command into the application. `MainWindow#executeCommand()`
+deletes the TravelPlan/TravelPlanObject by calling `Logic#execute()` which returns a `CommandResult`. `Logic#execute()` also sets the
+the `Directory` of the `ObservableDirectory` to the updated `Directory` after deleting the TravelPlan/TravelPlanObject so the Ui displays
+the updated list of `TravelPlan`s/`TravelPlanObject`s. From `CommandResult`, the `ResultDisplay` Ui will then output a text confirming
+to the user that the `delete` command was successfully executed.
+
+The activity diagram below shows a scenario whereby a user inputs the `delete` command:
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+The sequence diagram of the `delete` command has been shown above under the **Logic component** of the developer guide. 
+
+#### Design Consideration:
+
+Aspect: How to delete a `TravelPlanObject` from the `TravelPlan` in the current `Directory`
+
+- **Alternative 1 (Current Choice)**: Use individual delete commands for each sub-class of `TravelPlanObject`.
+    - Pros: Greater abstraction and a more logical implementation since there is a command for each sub-class.
+    - Cons: Greater repetition of code.
+
+- **Alternative 2**: Using a `DeleteTravelPlanObjectCommand` class.
+    - Pros: Lesser repetition of code.
+    - Cons: Lesser abstraction and the logic will be reliant on one class.
 
 
 ### Copy feature

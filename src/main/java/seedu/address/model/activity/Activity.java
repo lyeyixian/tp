@@ -52,8 +52,33 @@ public class Activity extends TravelPlanObject {
         return cost;
     }
 
+    /**
+     * Gets cost as string.
+     * @return String
+     */
+    public String getCostAsString() {
+        return cost.getValue();
+    }
+
+    /**
+     * Gets cost as an integer.
+     * @return int
+     */
+    public int getCostAsInt() {
+        return Integer.parseInt(cost.getValue());
+    }
+
+
     public Importance getLevelOfImportance() {
         return levelOfImportance;
+    }
+
+    /**
+     * Gets importance as an integer.
+     * @return int
+     */
+    public int getImportanceAsInt() {
+        return Integer.parseInt(levelOfImportance.getValue());
     }
 
     public WanderlustDateTime getActivityDateTime() {

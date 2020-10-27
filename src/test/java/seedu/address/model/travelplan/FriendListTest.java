@@ -27,7 +27,7 @@ public class FriendListTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), friendList.getFriendList());
+        assertEquals(Collections.emptyList(), friendList.getObservableFriendList());
     }
 
     @Test
@@ -77,21 +77,21 @@ public class FriendListTest {
 
     @Test
     public void getFriendList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> friendList.getFriendList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> friendList.getObservableFriendList().remove(0));
     }
 
     /**
+     * TODO
      * A stub ReadOnlyFriendList whose friends list can violate interface constraints.
      */
-    private static class FriendListStub implements ReadOnlyFriendList {
+    private static class FriendListStub extends FriendList {
         private final ObservableList<Friend> friends = FXCollections.observableArrayList();
 
         FriendListStub(Collection<Friend> friends) {
             this.friends.setAll(friends);
         }
 
-        @Override
-        public ObservableList<Friend> getFriendList() {
+        public ObservableList<Friend> getObservableFriendList() {
             return friends;
         }
     }

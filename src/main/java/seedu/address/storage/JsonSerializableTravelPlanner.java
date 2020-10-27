@@ -42,9 +42,10 @@ public class JsonSerializableTravelPlanner {
      * @param source future changes to this will not affect the created {@code JsonSerializableTravelPlanner}.
      */
     public JsonSerializableTravelPlanner(ReadOnlyTravelPlanner source) {
-        travelPlans.addAll(source.getTravelPlanList().stream().map(JsonAdaptedTravelPlan::new)
+        travelPlans.addAll(source.getObservableTravelPlanList().stream().map(JsonAdaptedTravelPlan::new)
                 .collect(Collectors.toList()));
-        wishlist.addAll(source.getWishlist().stream().map(JsonAdaptedActivity::new).collect(Collectors.toList()));
+        wishlist.addAll(source.getObservableWishlist().stream().map(JsonAdaptedActivity::new)
+                .collect(Collectors.toList()));
     }
 
     /**

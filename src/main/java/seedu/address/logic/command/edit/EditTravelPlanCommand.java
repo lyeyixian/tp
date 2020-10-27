@@ -90,9 +90,9 @@ public class EditTravelPlanCommand extends EditCommand {
         WanderlustDate updatedEndDate = editTravelPlanDescriptor.getEndDate().orElse(travelPlanToEdit.getEndDate());
 
         //obtain data list from original travelplan
-        ActivityList activities = travelPlanToEdit.getActivities();
-        AccommodationList accommodations = travelPlanToEdit.getAccommodations();
-        FriendList friends = travelPlanToEdit.getFriends();
+        ActivityList activities = travelPlanToEdit.getActivityList();
+        AccommodationList accommodations = travelPlanToEdit.getAccommodationList();
+        FriendList friends = travelPlanToEdit.getFriendList();
 
         return new TravelPlan(updatedName, updatedStartDate, updatedEndDate, activities, accommodations, friends);
     }

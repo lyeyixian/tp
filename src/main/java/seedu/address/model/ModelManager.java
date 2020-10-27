@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -16,7 +17,12 @@ import seedu.address.model.activity.Activity;
 import seedu.address.model.commons.Nameable;
 import seedu.address.model.commons.TravelPlanObject;
 import seedu.address.model.friend.Friend;
+import seedu.address.model.travelplan.AccommodationList;
+import seedu.address.model.travelplan.ActivityList;
+import seedu.address.model.travelplan.FriendList;
 import seedu.address.model.travelplan.TravelPlan;
+import seedu.address.model.travelplan.UniqueTravelPlanList;
+import seedu.address.model.wishlist.Wishlist;
 
 /**
  * Represents the in-memory model of the travel planner data.
@@ -26,15 +32,22 @@ public class ModelManager implements Model {
 
     private final TravelPlanner travelPlanner;
     private final UserPrefs userPrefs;
+    private int directoryIndex;
+
+
+    // Ui
     private final FilteredList<TravelPlan> filteredTravelPlans;
     private final FilteredList<Activity> filteredWishlist;
-    private boolean isTravelPlan;
-    private ObservableDirectory observableDirectory;
-    private int directoryIndex;
+    private final FilteredList<Activity> filteredActivityList;
+    private final FilteredList<Accommodation> filteredAccommodationList;
+    private final FilteredList<Friend> filteredFriendList;
+    private final ObservableDirectory observableDirectory;
+
+    // Logic
     private Directory directory;
-    private FilteredList<Activity> filteredActivityList;
-    private FilteredList<Accommodation> filteredAccommodationList;
-    private FilteredList<Friend> filteredFriendList;
+    private ActivityList activityList;
+    private AccommodationList accommodationList;
+    private FriendList friendList;
 
     /**
      * Initializes a ModelManager with the given travelPlanner and userPrefs.
@@ -47,10 +60,9 @@ public class ModelManager implements Model {
 
         this.travelPlanner = new TravelPlanner(travelPlanner);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTravelPlans = new FilteredList<>(this.travelPlanner.getTravelPlanList());
-        filteredWishlist = new FilteredList<>(this.travelPlanner.getWishlist());
-        isTravelPlan = false;
-        directory = this.travelPlanner.getWishlistAsDirectory();
+        filteredTravelPlans = new FilteredList<>(this.travelPlanner.getObservableTravelPlanList());
+        filteredWishlist = new FilteredList<>(this.travelPlanner.getObservableWishlist());
+        directory = this.travelPlanner.getWishlist();
         directoryIndex = -1;
         observableDirectory = new ObservableDirectory(directory);
         filteredActivityList = new FilteredList<>(observableDirectory.getObservableActivityList());
@@ -167,16 +179,18 @@ public class ModelManager implements Model {
 
     @Override
     public void setDirectory(int index) {
-        directory = this.travelPlanner.getWishlistAsDirectory();
+        directory = this.travelPlanner.getWishlist();
 
         if (index == -1) {
-            isTravelPlan = false;
             directoryIndex = -1;
-            directory = travelPlanner.getWishlistAsDirectory();
+            directory = travelPlanner.getWishlist();
         } else {
-            isTravelPlan = true;
             directoryIndex = index;
-            directory = travelPlanner.getTravelPlanList().get(index);
+            directory = travelPlanner.getObservableTravelPlanList().get(index);
+            TravelPlan travelPlan = (TravelPlan) directory;
+            activityList = travelPlan.getActivityList();
+            accommodationList = travelPlan.getAccommodationList();
+            friendList = travelPlan.getFriendList();
         }
         observableDirectory.setObservableDirectory(directory);
     }
@@ -188,16 +202,12 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isDirectoryTypeTravelPlan() {
-        if (isTravelPlan) {
-            return true;
-        }
-        return false;
+        return directory.isTravelPlan();
     }
 
     @Override
     public ObservableDirectory getObservableDirectory() {
         return observableDirectory;
-
     }
 
     //=========== TravelPlanObject =============================================================
@@ -205,36 +215,27 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTravelPlanObject(TravelPlanObject tPObj) {
         requireNonNull(tPObj);
-        assert directory instanceof TravelPlan : "Directory must be set to a TravelPlan to call hasTravelPlanObject.";
-        TravelPlan tp = (TravelPlan) directory;
-        return tp.hasTravelPlanObject(tPObj);
+        return directory.has(tPObj);
     }
 
     @Override
     public void deleteTravelPlanObject(TravelPlanObject tPObj) {
         requireNonNull(tPObj);
-        assert directory instanceof TravelPlan
-                : "Directory must be set to a TravelPlan to call deleteTravelPlanObject.";
-        TravelPlan tp = (TravelPlan) directory;
-        tp.removeTravelPlanObject(tPObj);
+        directory.remove(tPObj);
         observableDirectory.setObservableDirectory(directory);
     }
 
     @Override
     public void addTravelPlanObject(TravelPlanObject tPObj) {
         requireNonNull(tPObj);
-        assert directory instanceof TravelPlan : "Directory must be set to a TravelPlan to call addTravelPlanObject.";
-        TravelPlan tp = (TravelPlan) directory;
-        tp.addTravelPlanObject(tPObj);
+        directory.add(tPObj);
         observableDirectory.setObservableDirectory(directory);
     }
 
     @Override
     public void setTravelPlanObject(TravelPlanObject target, TravelPlanObject editedTravelPlanObject) {
         requireAllNonNull(target, editedTravelPlanObject);
-        assert directory instanceof TravelPlan : "Directory must be set to a TravelPlan to call setTravelPlanObject.";
-        TravelPlan tp = (TravelPlan) directory;
-        tp.setTravelPlanObject(target, editedTravelPlanObject);
+        directory.set(target, editedTravelPlanObject);
         observableDirectory.setObservableDirectory(directory);
     }
 
@@ -290,6 +291,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Accommodation> getFilteredAccommodationList() {
+        return filteredAccommodationList;
+    }
+
+    @Override
+    public void updateFilteredAccommodationList(Predicate<Nameable> predicate) {
+        requireNonNull(predicate);
+        filteredAccommodationList.setPredicate(predicate);
+    }
+
+    @Override
     public ObservableList<Friend> getFilteredFriendList() {
         return filteredFriendList;
     }
@@ -300,15 +312,58 @@ public class ModelManager implements Model {
         filteredFriendList.setPredicate(predicate);
     }
 
-    @Override
-    public ObservableList<Accommodation> getFilteredAccommodationList() {
-        return filteredAccommodationList;
+    //=========== Logic List Accessors =============================================================
+
+    public UniqueTravelPlanList getTravelPlanList() {
+        return travelPlanner.getTravelPlanList();
     }
 
-    @Override
-    public void updateFilteredAccommodationList(Predicate<Nameable> predicate) {
-        requireNonNull(predicate);
-        filteredAccommodationList.setPredicate(predicate);
+    public Wishlist getWishlist() {
+        return travelPlanner.getWishlist();
+    }
+
+    public ActivityList getActivityList() {
+        return activityList;
+    }
+
+    public AccommodationList getAccommodationList() {
+        return accommodationList;
+    }
+
+    public FriendList getFriendList() {
+        return friendList;
+    }
+
+    /**
+     * Sorts the wishlist with the given comparator.
+     */
+    public void sortWishlist(Comparator<Activity> comparator) {
+        travelPlanner.sortWishlist(comparator);
+        observableDirectory.setObservableDirectory(directory);
+    }
+
+    /**
+     * Sorts the activity list with the given comparator.
+     */
+    public void sortActivityList(Comparator<Activity> comparator) {
+        activityList.sort(comparator);
+        observableDirectory.setObservableDirectory(directory);
+    }
+
+    /**
+     * Sorts the accommodation list with the given comparator.
+     */
+    public void sortAccommodationList(Comparator<Accommodation> comparator) {
+        accommodationList.sort(comparator);
+        observableDirectory.setObservableDirectory(directory);
+    }
+
+    /**
+     * Sorts the friend list with the given comparator.
+     */
+    public void sortFriendList(Comparator<Friend> comparator) {
+        friendList.sort(comparator);
+        observableDirectory.setObservableDirectory(directory);
     }
 
     @Override

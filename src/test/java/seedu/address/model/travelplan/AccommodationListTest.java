@@ -27,7 +27,7 @@ public class AccommodationListTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), accommodationList.getAccommodationList());
+        assertEquals(Collections.emptyList(), accommodationList.getObservableAccommodationList());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class AccommodationListTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAccommodationList_replacesData() {
+    public void resetData_withValidAccommodationList_replacesData() {
         AccommodationList newData = getTypicalAccommodationList(1);
         accommodationList.resetData(newData);
         assertEquals(newData, accommodationList);
@@ -78,21 +78,21 @@ public class AccommodationListTest {
     @Test
     public void getAccommodationList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () ->
-                accommodationList.getAccommodationList().remove(0));
+                accommodationList.getObservableAccommodationList().remove(0));
     }
 
     /**
+     * TODO:
      * A stub ReadOnlyAccommodationList whose accommodations list can violate interface constraints.
      */
-    private static class AccommodationListStub implements ReadOnlyAccommodationList {
+    private static class AccommodationListStub extends AccommodationList {
         private final ObservableList<Accommodation> accommodations = FXCollections.observableArrayList();
 
         AccommodationListStub(Collection<Accommodation> accommodations) {
             this.accommodations.setAll(accommodations);
         }
 
-        @Override
-        public ObservableList<Accommodation> getAccommodationList() {
+        public ObservableList<Accommodation> getObservableAccommodationList() {
             return accommodations;
         }
     }

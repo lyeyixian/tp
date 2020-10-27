@@ -34,6 +34,7 @@ public class WanderlustDateTime {
         checkArgument(isValidWanderlustDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = dateTime;
         value = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+
     }
 
     /**

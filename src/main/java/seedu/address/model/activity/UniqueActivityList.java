@@ -3,6 +3,7 @@ package seedu.address.model.activity;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,6 +38,10 @@ public class UniqueActivityList implements Iterable<Activity> {
     public boolean contains(Activity toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameActivity);
+    }
+
+    public ObservableList<Activity> getInternalList() {
+        return internalList;
     }
 
     /**
@@ -98,6 +103,10 @@ public class UniqueActivityList implements Iterable<Activity> {
         }
 
         internalList.setAll(activities);
+    }
+
+    public void sort(Comparator<Activity> comparator) {
+        FXCollections.sort(internalList, comparator);
     }
 
     /**

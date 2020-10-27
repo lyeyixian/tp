@@ -38,6 +38,10 @@ public class Friend extends TravelPlanObject {
         return name;
     }
 
+    public String getNameAsString() {
+        return name.toString();
+    }
+
     public Passport getPassport() {
         return passport;
     }
