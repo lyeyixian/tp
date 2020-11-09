@@ -83,6 +83,6 @@ UniqueFriendList o-down-> "*" TravelPlanObject
 ActivityList -[hidden]right-> AccommodationList
 AccommodationList -[hidden]right-> FriendList
 
-ModelManager -->"1" TravelPlan : filtered list
-ModelManager -right->"4" TravelPlanObject : filtered list
+ModelManager -->"*" TravelPlan : filtered list
+ModelManager -right->"*" TravelPlanObject : filtered list
 @enduml
